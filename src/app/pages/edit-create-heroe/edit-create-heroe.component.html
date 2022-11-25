@@ -1,58 +1,76 @@
 <div class="section">
-    <mat-card>
-        <h3>Add a Superhero</h3>
+  <mat-card>
+    <h3>Add a Superhero</h3>
 
-        
-        <div class="img-container">
-            <img src="{{superHeroForm.controls['url'].value || 'https://via.placeholder.com/150?text=add+image+by+url'}}" alt="" height="128" width="128">
-        </div>
-        <form class="form-container" [formGroup]="superHeroForm">
-            <mat-form-field class="mb-5">
-                <mat-label>Url imagen</mat-label>
-                <input matInput formControlName="url">
+    <div class="img-container">
+      <img
+        src="{{
+          superHeroForm.controls['url'].value ||
+            'https://via.placeholder.com/150?text=add+image+by+url'
+        }}"
+        alt=""
+        height="128"
+        width="128"
+      />
+    </div>
+    <form class="form-container" [formGroup]="superHeroForm">
+      <mat-form-field class="mb-5">
+        <mat-label>Url imagen</mat-label>
+        <input matInput formControlName="url" />
+      </mat-form-field>
+      <table class="mb-5" cellspacing="0">
+        <tr>
+          <td>
+            <mat-form-field class="example-full-width">
+              <mat-label>Name (super hero)</mat-label>
+              <input matInput formControlName="name" appUpperCase />
             </mat-form-field>
-            <table class="mb-5" cellspacing="0">
-                <tr>
-                    <td>
-                        <mat-form-field class="example-full-width">
-                            <mat-label>Name (super hero)</mat-label>
-                            <input matInput formControlName="name">
-                        </mat-form-field>
-                    </td>
-                    <td>
-                        <mat-form-field class="flex-end">
-                            <mat-label>Real Name</mat-label>
-                            <input matInput formControlName="realName">
-                        </mat-form-field>
-                    </td>
-                </tr>
-            </table>
-            <mat-radio-group aria-label="Select an option" class="mb-5" formControlName="gender">
-                <mat-radio-button value="Male">Male</mat-radio-button>
-                <mat-radio-button value="Female">Female</mat-radio-button>
-                <mat-radio-button value="Other">Other</mat-radio-button>
-            </mat-radio-group>
-            <table>
-                <tr>
-                    <td>
-                        <mat-form-field class="mb-5">
-                            <mat-label>Weight</mat-label>
-                            <input matInput formControlName="weight">
-                        </mat-form-field>
-                    </td>
-                    <td>
-                        <mat-form-field class="flex-end">
-                            <mat-label>Age</mat-label>
-                            <input matInput formControlName="age">
-                        </mat-form-field>
-                    </td>
-                </tr>
-            </table>
-            
-            <div class="flex-row">
-                <button mat-button (click)="onCancel()">Cancel</button>
-                <button mat-button color="primary" [disabled]="superHeroForm.invalid" (click)="onSend()">Send</button>
-            </div>
-          </form>
-    </mat-card>
+          </td>
+          <td>
+            <mat-form-field class="flex-end">
+              <mat-label>Real Name</mat-label>
+              <input matInput formControlName="realName" appUpperCase />
+            </mat-form-field>
+          </td>
+        </tr>
+      </table>
+      <mat-radio-group
+        aria-label="Select an option"
+        class="mb-5"
+        formControlName="gender"
+      >
+        <mat-radio-button value="Male">Male</mat-radio-button>
+        <mat-radio-button value="Female">Female</mat-radio-button>
+        <mat-radio-button value="Other">Other</mat-radio-button>
+      </mat-radio-group>
+      <table>
+        <tr>
+          <td>
+            <mat-form-field class="mb-5">
+              <mat-label>Weight</mat-label>
+              <input type="number" matInput formControlName="weight" />
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field class="flex-end">
+              <mat-label>Age</mat-label>
+              <input type="number" matInput formControlName="age" />
+            </mat-form-field>
+          </td>
+        </tr>
+      </table>
+
+      <div class="flex-row">
+        <button mat-button (click)="onCancel()">Cancel</button>
+        <button
+          mat-button
+          color="primary"
+          [disabled]="superHeroForm.invalid"
+          (click)="onSend()"
+        >
+          Send
+        </button>
+      </div>
+    </form>
+  </mat-card>
 </div>
