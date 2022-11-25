@@ -15,8 +15,8 @@ describe('SuperHerosService', () => {
   });
 
   it('#getHeroes debe traer todos los héroes', ()=> {
-    service.getHeores();
-    expect(heroes).toEqual(data)
+    let rta = service.getHeroes();
+    expect(rta).toEqual(data)
   })
 
   it('#getHeroeById debe traer el héroe correspondiende al id dado', ()=> {

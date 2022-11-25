@@ -4,6 +4,8 @@ export const data = [
         "name": "Ant-Man",
         "realName": "Hank Pym",
         "gender": "Male",
+        "weight": 95,
+        "age": 35,
         "url": "https://www.superherodb.com/pictures2/portraits/10/100/857.jpg"
     },
     {
@@ -11,13 +13,8 @@ export const data = [
         "name": "Aquaman",
         "realName": "Orin",
         "gender": "Male",
-        "url": "https://www.superherodb.com/pictures2/portraits/10/100/634.jpg"
-    },
-    {
-        "id": 2,
-        "name": "Aquaman",
-        "realName": "Orin",
-        "gender": "Male",
+        "weight": 95,
+        "age": 35,
         "url": "https://www.superherodb.com/pictures2/portraits/10/100/634.jpg"
     },
     {
@@ -25,6 +22,8 @@ export const data = [
         "name": "Batgirl",
         "realName": "Barbara Gordon",
         "gender": "Female",
+        "weight": 95,
+        "age": 35,
         "url": "https://www.superherodb.com/pictures2/portraits/10/100/1111.jpg"
     },
     {
@@ -32,6 +31,8 @@ export const data = [
         "name": "Batman",
         "realName": "Bruce Wayne",
         "gender": "Male",
+        "weight": 95,
+        "age": 35,
         "url": "https://www.superherodb.com/pictures2/portraits/10/100/639.jpg"
     },
     {
@@ -39,6 +40,8 @@ export const data = [
         "name": "Batlestar",
         "realName": "Lemar Hoskins",
         "gender": "Male",
+        "weight": 95,
+        "age": 35,
         "url": "https://www.superherodb.com/pictures2/portraits/10/100/231.jpg"
     },
     {
@@ -46,6 +49,8 @@ export const data = [
         "name": "Black Adam",
         "realName": "Teth-Adam",
         "gender": "Male",
+        "weight": 95,
+        "age": 35,
         "url": "https://www.superherodb.com/pictures2/portraits/10/100/643.jpg"
     },
     {
@@ -53,6 +58,8 @@ export const data = [
         "name": "Black Bolt",
         "realName": "Blackagar Boltagon",
         "gender": "Male",
+        "weight": 95,
+        "age": 35,
         "url": "https://www.superherodb.com/pictures2/portraits/10/100/243.jpg"
     },
     {
@@ -60,6 +67,8 @@ export const data = [
         "name": "Black Panther",
         "realName": "T'Challa",
         "gender": "Male",
+        "weight": 95,
+        "age": 35,
         "url": "https://www.superherodb.com/pictures2/portraits/10/100/247.jpg"
     },
     {
@@ -67,6 +76,8 @@ export const data = [
         "name": "Black Widow",
         "realName": "Natasha Romanoff",
         "gender": "Female",
+        "weight": 95,
+        "age": 35,
         "url": "https://www.superherodb.com/pictures2/portraits/10/100/248.jpg"
     },
     {
@@ -74,6 +85,8 @@ export const data = [
         "name": "Blade",
         "realName": "Eric Brooks",
         "gender": "Male",
+        "weight": 95,
+        "age": 35,
         "url": "https://www.superherodb.com/pictures2/portraits/10/100/33.jpg"
     },
     {
@@ -81,6 +94,8 @@ export const data = [
         "name": "Boba Fett",
         "realName": "-",
         "gender": "Male",
+        "weight": 95,
+        "age": 35,
         "url": "https://www.superherodb.com/pictures2/portraits/10/100/10467.jpg"
     },
     {
@@ -88,6 +103,8 @@ export const data = [
         "name": "Captain America",
         "realName": "Steve Rogers",
         "gender": "Male",
+        "weight": 95,
+        "age": 35,
         "url": "https://www.superherodb.com/pictures2/portraits/10/100/274.jpg"
     },
     {
@@ -95,6 +112,8 @@ export const data = [
         "name": "Black Adam",
         "realName": "Teth-Adam",
         "gender": "Male",
+        "weight": 95,
+        "age": 35,
         "url": "https://www.superherodb.com/pictures2/portraits/10/100/643.jpg"
     },
     {
@@ -102,6 +121,8 @@ export const data = [
         "name": "Captain Marvel",
         "realName": "Carol Danvers",
         "gender": "Female",
+        "weight": 95,
+        "age": 35,
         "url": "https://www.superherodb.com/pictures2/portraits/10/100/103.jpg"
     },
     {
@@ -109,6 +130,8 @@ export const data = [
         "name": "Chuck Norris",
         "realName": "Carlos Ray Norris",
         "gender": "Male",
+        "weight": 95,
+        "age": 35,
         "url": "https://www.superherodb.com/pictures2/portraits/10/100/954.jpg"
     },
     {
@@ -116,6 +139,8 @@ export const data = [
         "name": "Daredevil",
         "realName": "Matt Murdock",
         "gender": "Male",
+        "weight": 95,
+        "age": 35,
         "url": "https://www.superherodb.com/pictures2/portraits/10/100/52.jpg"
     },
     {
@@ -123,6 +148,8 @@ export const data = [
         "name": "Darth Vader",
         "realName": "Anakin Skywalker",
         "gender": "Male",
+        "weight": 95,
+        "age": 35,
         "url": "https://www.superherodb.com/pictures2/portraits/10/100/10444.jpg"
     },
     {
@@ -130,6 +157,8 @@ export const data = [
         "name": "Deadpool",
         "realName": "Wade Wilson",
         "gender": "Male",
+        "weight": 95,
+        "age": 35,
         "url": "https://www.superherodb.com/pictures2/portraits/10/100/835.jpg"
     },
     {
@@ -137,6 +166,8 @@ export const data = [
         "name": "Doctor Strange",
         "realName": "Stephen Strange",
         "gender": "Male",
+        "weight": 95,
+        "age": 35,
         "url": "https://www.superherodb.com/pictures2/portraits/10/100/55.jpg"
     },
     {
@@ -144,6 +175,8 @@ export const data = [
         "name": "Elektra",
         "realName": "Elektra Natchios",
         "gender": "Male",
+        "weight": 95,
+        "age": 35,
         "url": "https://www.superherodb.com/pictures2/portraits/10/100/625.jpg"
     },
     {
@@ -151,6 +184,8 @@ export const data = [
         "name": "Elastigirl",
         "realName": "Helen Parr",
         "gender": "Male",
+        "weight": 95,
+        "age": 35,
         "url": "https://www.superherodb.com/pictures2/portraits/10/100/870.jpg"
     },
     {
@@ -158,6 +193,8 @@ export const data = [
         "name": "Falcon",
         "realName": "Sam Wilson",
         "gender": "Male",
+        "weight": 95,
+        "age": 35,
         "url": "https://www.superherodb.com/pictures2/portraits/10/100/56.jpg"
     },
     {
@@ -165,6 +202,8 @@ export const data = [
         "name": "Firestar",
         "realName": "Angelica Jones",
         "gender": "Male",
+        "weight": 95,
+        "age": 35,
         "url": "https://www.superherodb.com/pictures2/portraits/10/100/60.jpg"
     },
     {
@@ -172,6 +211,8 @@ export const data = [
         "name": "Flash",
         "realName": "Jay Garrick",
         "gender": "Male",
+        "weight": 95,
+        "age": 35,
         "url": "https://www.superherodb.com/pictures2/portraits/10/100/891.jpg"
     },
     {
@@ -179,6 +220,8 @@ export const data = [
         "name": "Gambit",
         "realName": "Remy Etienne LeBeau",
         "gender": "Male",
+        "weight": 95,
+        "age": 35,
         "url": "https://www.superherodb.com/pictures2/portraits/10/100/64.jpg"
     },
     {
@@ -186,6 +229,8 @@ export const data = [
         "name": "Goku",
         "realName": "Kakarot",
         "gender": "Male",
+        "weight": 95,
+        "age": 35,
         "url": "https://www.superherodb.com/pictures2/portraits/10/100/1284.jpg"
     },
     {
@@ -193,6 +238,8 @@ export const data = [
         "name": "Groot",
         "realName": "-",
         "gender": "Male",
+        "weight": 95,
+        "age": 35,
         "url": "https://www.superherodb.com/pictures2/portraits/10/100/10017.jpg"
     },
     {
@@ -200,6 +247,8 @@ export const data = [
         "name": "Han Solo",
         "realName": "-",
         "gender": "Male",
+        "weight": 95,
+        "age": 35,
         "url": "https://www.superherodb.com/pictures2/portraits/10/100/10456.jpg"
     },
     {
@@ -207,6 +256,8 @@ export const data = [
         "name": "Harley Quinn",
         "realName": "-",
         "gender": "Female",
+        "weight": 95,
+        "age": 35,
         "url": "https://www.superherodb.com/pictures2/portraits/10/100/701.jpg"
     },
     {
@@ -214,6 +265,8 @@ export const data = [
         "name": "Hulk",
         "realName": "Bruce Banner",
         "gender": "Male",
+        "weight": 95,
+        "age": 35,
         "url": "https://www.superherodb.com/pictures2/portraits/10/100/83.jpg"
     },
     {
@@ -221,6 +274,8 @@ export const data = [
         "name": "Iceman",
         "realName": "Bobby Drake",
         "gender": "Male",
+        "weight": 95,
+        "age": 35,
         "url": "https://www.superherodb.com/pictures2/portraits/10/100/816.jpg"
     },
     {
@@ -228,6 +283,8 @@ export const data = [
         "name": "Iron Man",
         "realName": "Tony Stark",
         "gender": "Male",
+        "weight": 95,
+        "age": 35,
         "url": "https://www.superherodb.com/pictures2/portraits/10/100/85.jpg"
     },
     {
@@ -235,6 +292,8 @@ export const data = [
         "name": "Jessica Jones",
         "realName": "Jessica Campbell Jones Cage",
         "gender": "Female",
+        "weight": 95,
+        "age": 35,
         "url": "https://www.superherodb.com/pictures2/portraits/10/100/10403.jpg"
     },
     {
@@ -242,6 +301,8 @@ export const data = [
         "name": "Joker",
         "realName": "Jack Napier",
         "gender": "Male",
+        "weight": 95,
+        "age": 35,
         "url": "https://www.superherodb.com/pictures2/portraits/10/100/719.jpg"
     },
     {
@@ -249,6 +310,8 @@ export const data = [
         "name": "Kang",
         "realName": "NathanielRichards",
         "gender": "Male",
+        "weight": 95,
+        "age": 35,
         "url": "https://www.superherodb.com/pictures2/portraits/10/100/1053.jpg"
     },
     {
@@ -256,6 +319,8 @@ export const data = [
         "name": "Kylo Ren",
         "realName": "Ben Solo",
         "gender": "Male",
+        "weight": 95,
+        "age": 35,
         "url": "https://www.superherodb.com/pictures2/portraits/10/100/10559.jpg"
     },
     {
@@ -263,6 +328,8 @@ export const data = [
         "name": "Legion",
         "realName": "David Haller",
         "gender": "Male",
+        "weight": 95,
+        "age": 35,
         "url": "https://www.superherodb.com/pictures2/portraits/10/100/10651.jpg"
     },
     {
@@ -270,6 +337,8 @@ export const data = [
         "name": "Loki",
         "realName": "Loki Laufeyson",
         "gender": "Male",
+        "weight": 95,
+        "age": 35,
         "url": "https://www.superherodb.com/pictures2/portraits/10/100/928.jpg"
     },
     {
@@ -277,6 +346,8 @@ export const data = [
         "name": "Magneto",
         "realName": "Erik Magnus Lensherr",
         "gender": "Male",
+        "weight": 95,
+        "age": 35,
         "url": "https://www.superherodb.com/pictures2/portraits/10/100/12.jpg"
     },
     {
@@ -284,6 +355,8 @@ export const data = [
         "name": "Mantis",
         "realName": "-",
         "gender": "Female",
+        "weight": 95,
+        "age": 35,
         "url": "https://www.superherodb.com/pictures2/portraits/10/100/384.jpg"
     },
     {
@@ -291,6 +364,8 @@ export const data = [
         "name": "Namora",
         "realName": "Aquaria Nautica Neptunia",
         "gender": "Female",
+        "weight": 95,
+        "age": 35,
         "url": "https://www.superherodb.com/pictures2/portraits/10/100/1364.jpg"
     },
     {
@@ -298,6 +373,8 @@ export const data = [
         "name": "Nebula",
         "realName": "-",
         "gender": "Female",
+        "weight": 95,
+        "age": 35,
         "url": "https://www.superherodb.com/pictures2/portraits/10/100/10632.jpg"
     },
     {
@@ -305,6 +382,8 @@ export const data = [
         "name": "Nick Fury",
         "realName": "Nicholas Joseph Fury",
         "gender": "Male",
+        "weight": 95,
+        "age": 35,
         "url": "https://www.superherodb.com/pictures2/portraits/10/100/326.jpg"
     },
     {
@@ -312,6 +391,8 @@ export const data = [
         "name": "Odin",
         "realName": "Odin Borson",
         "gender": "Male",
+        "weight": 95,
+        "age": 35,
         "url": "https://www.superherodb.com/pictures2/portraits/10/100/10388.jpg"
     },
     {
@@ -319,6 +400,8 @@ export const data = [
         "name": "Osiris",
         "realName": "Amon Tomaz",
         "gender": "Male",
+        "weight": 95,
+        "age": 35,
         "url": "https://www.superherodb.com/pictures2/portraits/10/100/1165.jpg"
     },
     {
@@ -326,6 +409,8 @@ export const data = [
         "name": "Phoenix",
         "realName": "Jean Grey",
         "gender": "Female",
+        "weight": 95,
+        "age": 35,
         "url": "https://www.superherodb.com/pictures2/portraits/10/100/828.jpg"
     },
     {
@@ -333,6 +418,8 @@ export const data = [
         "name": "Punisher",
         "realName": "Frank Castle",
         "gender": "Male",
+        "weight": 95,
+        "age": 35,
         "url": "https://www.superherodb.com/pictures2/portraits/10/100/112.jpg"
     },
     {
@@ -340,6 +427,8 @@ export const data = [
         "name": "Quicksilver",
         "realName": "Pietro Django Maximoff",
         "gender": "Male",
+        "weight": 95,
+        "age": 35,
         "url": "https://www.superherodb.com/pictures2/portraits/10/100/115.jpg"
     },
     {
@@ -347,6 +436,8 @@ export const data = [
         "name": "Robin",
         "realName": "Dick Grayson",
         "gender": "Male",
+        "weight": 95,
+        "age": 35,
         "url": "https://www.superherodb.com/pictures2/portraits/10/100/850.jpg"
     },
     {
@@ -354,6 +445,8 @@ export const data = [
         "name": "Rogue",
         "realName": "Anna Marie",
         "gender": "Female",
+        "weight": 95,
+        "age": 35,
         "url": "https://www.superherodb.com/pictures2/portraits/10/100/831.jpg"
     },
     {
@@ -361,6 +454,8 @@ export const data = [
         "name": "Scarlet Witch",
         "realName": "Wanda Maximoff",
         "gender": "Female",
+        "weight": 95,
+        "age": 35,
         "url": "https://www.superherodb.com/pictures2/portraits/10/100/444.jpg"
     },
     {
@@ -368,6 +463,8 @@ export const data = [
         "name": "She-Hulk",
         "realName": "Jennifer Walters",
         "gender": "Female",
+        "weight": 95,
+        "age": 35,
         "url": "https://www.superherodb.com/pictures2/portraits/10/100/125.jpg"
     },
     {
@@ -375,6 +472,8 @@ export const data = [
         "name": "Spider-Gwen",
         "realName": "Gwen Stacy",
         "gender": "Female",
+        "weight": 95,
+        "age": 35,
         "url": "https://www.superherodb.com/pictures2/portraits/10/100/10507.jpg"
     },
     {
@@ -382,6 +481,8 @@ export const data = [
         "name": "Superman",
         "realName": "Clark Kent",
         "gender": "Male",
+        "weight": 95,
+        "age": 35,
         "url": "https://www.superherodb.com/pictures2/portraits/10/100/791.jpg"
     },
     {
@@ -389,6 +490,8 @@ export const data = [
         "name": "Thanos",
         "realName": "-",
         "gender": "Male",
+        "weight": 95,
+        "age": 35,
         "url": "https://www.superherodb.com/pictures2/portraits/10/100/1305.jpg"
     },
     {
@@ -396,6 +499,8 @@ export const data = [
         "name": "Thor",
         "realName": "Thor Odinson",
         "gender": "Male",
+        "weight": 95,
+        "age": 35,
         "url": "https://www.superherodb.com/pictures2/portraits/10/100/140.jpg"
     },
     {
@@ -403,6 +508,8 @@ export const data = [
         "name": "Tracy Strauss",
         "realName": "-",
         "gender": "Female",
+        "weight": 95,
+        "age": 35,
         "url": "https://www.superherodb.com/pictures2/portraits/10/100/1312.jpg"
     },
     {
@@ -410,6 +517,8 @@ export const data = [
         "name": "Ultron",
         "realName": "-",
         "gender": "Male",
+        "weight": 95,
+        "age": 35,
         "url": "https://www.superherodb.com/pictures2/portraits/10/100/1339.jpg"
     },
     {
@@ -417,6 +526,8 @@ export const data = [
         "name": "Valkyrie",
         "realName": "Brunnhilde",
         "gender": "Female",
+        "weight": 95,
+        "age": 35,
         "url": "https://www.superherodb.com/pictures2/portraits/10/100/147.jpg"
     },
     {
@@ -424,6 +535,8 @@ export const data = [
         "name": "Wonder Woman",
         "realName": "Diana Prince",
         "gender": "Female",
+        "weight": 95,
+        "age": 35,
         "url": "https://www.superherodb.com/pictures2/portraits/10/100/807.jpg"
     }
     

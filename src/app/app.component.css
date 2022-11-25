@@ -1,0 +1,18 @@
+.title-container{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+h1{
+    margin-bottom: 0px;
+    font-family: 'Rubik Glitch', cursive;
+    font-size: 48px;
+}
+
+.subtitle-text{
+    margin-top: 2px;
+    font-size: 16px;
+    color: #666;
+}

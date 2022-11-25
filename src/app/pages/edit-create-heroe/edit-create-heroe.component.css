@@ -1,0 +1,33 @@
+.section{
+    padding: 0px 13em ;
+}
+
+.form-container{
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.full-width{
+    width: 100%;
+}
+
+mat-radio-group{
+    display: flex;
+    justify-content: space-around;
+}
+
+.flex-end{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.mb-5{
+    margin-bottom: 2em;
+}
+
+.img-container{
+    display: flex;
+    justify-content: center;
+}
