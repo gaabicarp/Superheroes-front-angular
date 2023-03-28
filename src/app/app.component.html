@@ -1,9 +1,21 @@
 <div class="title-container">
-    <h1>Super Heroes Wiki</h1>
-    <p class="subtitle-text">Search the best superheroes of all the universes</p>
+  <h1>Super Heroes Wiki</h1>
+  <p class="subtitle-text">Search the best superheroes of all the universes</p>
 </div>
 
+<app-home-page
+  *ngIf="!showCreateEdit"
+  [heroesList]="searchResults"
+  (editHeroe)="showEditHeroePage($event)"
+  (newHero)="showNewHeroePage()"
+  (deleteHeroe)="deleteHeroe($event)"
+  (searchHeroe)="searchHeroe($event)"
+></app-home-page>
 
-<app-home-page *ngIf="!showCreateEdit" [heroes]="heroes" (editHeroe)="showEditHeroePage($event)" (newHero)="showNewHeroePage()"></app-home-page>
-
-<app-edit-create-heroe *ngIf="showCreateEdit" [heroe]="selectedHero" (create)="createHeroe($event)" (edit)="editHeroe($event)" (cancel)="showHomePage()"></app-edit-create-heroe>
+<app-edit-create-heroe
+  *ngIf="showCreateEdit"
+  [heroe]="selectedHero"
+  (create)="createHeroe($event)"
+  (edit)="editHeroe($event)"
+  (cancel)="showHomePage()"
+></app-edit-create-heroe>

@@ -14,43 +14,66 @@ describe('SuperHerosService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('#getHeroes debe traer todos los héroes', ()=> {
+  it('#getHeroes debe traer todos los héroes', () => {
     let rta = service.getHeroes();
-    expect(rta).toEqual(data)
-  })
+    expect(rta).toEqual(data);
+  });
 
-  it('#getHeroeById debe traer el héroe correspondiende al id dado', ()=> {
-    const heroe = {"id": 2, "name": "Aquaman", "realName": "Orin", "gender": "Male", "url": "https://www.superherodb.com/pictures2/portraits/10/100/634.jpg"};
+  it('#getHeroeById debe traer el héroe correspondiende al id dado', () => {
+    const heroe = {
+      id: 2,
+      name: 'Aquaman',
+      realName: 'Orin',
+      gender: 'Male',
+      weight: 95,
+      age: 35,
+      url: 'https://www.superherodb.com/pictures2/portraits/10/100/634.jpg',
+    };
 
-    const result = service.getHeroeById(2)
-    
-    expect(result).toEqual(heroe)
-  })
+    const result = service.getHeroeById(2);
 
-  it('#getHeroesByString debe traer todos los héroes que contienen el parametro dado', ()=> {
-    const heroe = {"id": 2, "name": "Aquaman", "realName": "Orin", "gender": "Male", "url": "https://www.superherodb.com/pictures2/portraits/10/100/634.jpg"};
+    expect(result).toEqual(heroe);
+  });
 
-    const result = service.getHeroesByString('Aquaman')
+  it('#getHeroesByString debe traer todos los héroes que contienen el parametro dado', () => {
+    const heroe = {
+      id: 2,
+      name: 'Aquaman',
+      realName: 'Orin',
+      gender: 'Male',
+      weight: 24,
+      age: 42,
+      url: 'https://www.superherodb.com/pictures2/portraits/10/100/634.jpg',
+    };
 
-    expect(result).toEqual(heroe)
-  })
+    const result = service.getHeroesByString('Aquaman');
 
-  it('#modifyHeroeById debe modificar el héroe con los nuevos valores dados', ()=> {
-    const editedHeroe = {"id": 2, "name": "Aquaman", "realName": "Pedro Martinez", "gender": "Male", "url": "https://www.superherodb.com/pictures2/portraits/10/100/634.jpg"};
+    expect(result).toEqual(heroe);
+  });
+
+  it('#modifyHeroeById debe modificar el héroe con los nuevos valores dados', () => {
+    const editedHeroe = {
+      id: 2,
+      name: 'Aquaman',
+      realName: 'Pedro Martinez',
+      gender: 'Male',
+      weight: 24,
+      age: 42,
+      url: 'https://www.superherodb.com/pictures2/portraits/10/100/634.jpg',
+    };
 
     service.modifyHeroeById(editedHeroe);
 
-    const result = service.getHeroeById(2)
+    const result = service.getHeroeById(2);
 
-    expect(result.realName).toEqual('Pedro Martinez')
-  })
+    expect(result?.realName).toEqual('Pedro Martinez');
+  });
 
-  it('#deleteHeroeById debe eliminar el heroe correspondiente al id dado', ()=> {
-    
-    service.deleteHeroeById(3)
+  it('#deleteHeroeById debe eliminar el heroe correspondiente al id dado', () => {
+    service.deleteHeroeById(3);
 
-    const result = service.getHeroeById(3)
+    const result = service.getHeroeById(3);
 
     expect(result).toBeNull();
-  })
+  });
 });

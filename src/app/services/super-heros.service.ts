@@ -6,7 +6,7 @@ import { tap } from 'rxjs/operators';
 
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SuperHerosService {
 
@@ -16,12 +16,15 @@ export class SuperHerosService {
   constructor(
     private http: HttpClient
   ) {
-    
+    this.loadHeroes();
   }
 
   loadHeroes(): void {
     this.http.get<Superheroe[]>(this.dataUrl)
-      .pipe(tap(superHeroes => { this.heroes = superHeroes }))
+      .pipe(tap(superHeroes => { 
+        console.log(superHeroes)
+        this.heroes = superHeroes 
+      }))
       .subscribe();
   }
 
@@ -43,8 +46,27 @@ export class SuperHerosService {
     return this.heroes.find(i => i.id === id);
   }
 
-  createHeroe(newHero: Superheroe){
+  createHeroe(newHero: Superheroe) {
     newHero.id = new Date().getUTCMilliseconds();
-    this.heroes.push(newHero)
+    this.heroes.push(newHero);
+  }
+
+  getHeroeById(id: number) {
+    return this.heroes.find((h) => h.id === id) || null;
+  }
+
+  deleteHeroeById(heroe: Superheroe) {
+    let index = this.heroes.indexOf(heroe);
+    if (index > -1) {
+      this.heroes.splice(index, 1);
+    }
+  }
+
+  searchByString(name: string) {
+    return this.heroes.filter(
+      (h) =>
+        h.name.toLowerCase().includes(name.toLowerCase()) ||
+        h.realName.toLowerCase().includes(name.toLowerCase())
+    );
   }
 }
