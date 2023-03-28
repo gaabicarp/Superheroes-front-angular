@@ -1,7 +1,6 @@
 import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { data } from 'src/data/mock-heroes';
 import { Superheroe } from 'src/models/Superheroe.model';
 
 @Component({
@@ -34,7 +33,6 @@ export class HomePageComponent implements OnInit, AfterViewInit {
   }
 
   onEditHero(e: Superheroe){
-    console.log('asd')
     this.editHeroe.emit(e);
   }
 

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Superheroe } from 'src/models/Superheroe.model';
-import { data } from 'src/data/mock-heroes';
 import { SuperHerosService } from './services/super-heros.service';
 
 @Component({
@@ -20,7 +19,7 @@ export class AppComponent implements OnInit {
   ){}
 
   ngOnInit(): void{
-    this.superHeroService.getHeroes$().subscribe(res => {
+    this.superHeroService.getHeroes().subscribe(res => {
       this.heroes = res;
     })
   }

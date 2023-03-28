@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { data } from 'src/data/mock-heroes';
+import { data } from 'src/assets/data/mock-heroes';
 import { SuperHerosService } from './super-heros.service';
 
 describe('SuperHerosService', () => {

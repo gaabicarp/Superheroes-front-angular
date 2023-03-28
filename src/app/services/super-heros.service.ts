@@ -1,27 +1,46 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
-import { data } from 'src/data/mock-heroes';
 import { Superheroe } from 'src/models/Superheroe.model';
+import { tap } from 'rxjs/operators';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class SuperHerosService {
 
-  private heroes: Superheroe[];
-  private heroes$: BehaviorSubject<Superheroe[]>;
+  private heroes!: Superheroe[];
+  private dataUrl = 'assets/data/mock-heroes.json'
 
-  constructor() {
-    this.heroes = data;
-    this.heroes$ = new BehaviorSubject(this.heroes);
+  constructor(
+    private http: HttpClient
+  ) {
+    
   }
 
-  getHeroes$(): Observable<Superheroe[]> {
-    return this.heroes$.asObservable();
+  loadHeroes(): void {
+    this.http.get<Superheroe[]>(this.dataUrl)
+      .pipe(tap(superHeroes => { this.heroes = superHeroes }))
+      .subscribe();
   }
 
-  getHeroes(){
-    return this.heroes;
+  getHeroes(): Observable<Superheroe[]> {
+    return new Observable(observer => {
+      observer.next(this.heroes);
+      observer.complete();
+    })
+  }
+
+  editHeroe(updatedHero: Superheroe){
+    const index = this.heroes.findIndex(i => i.id === updatedHero.id);
+    if(index !== -1){
+      this.heroes[index] = updatedHero;
+    }
+  }
+
+  getHeroById(id: number){
+    return this.heroes.find(i => i.id === id);
   }
 
   createHeroe(newHero: Superheroe){
