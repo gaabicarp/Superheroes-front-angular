@@ -1,7 +1,5 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { Superheroe } from 'src/models/Superheroe.model';
+import { Component, OnInit } from '@angular/core';
 import { LoadingService } from './services/loading.service';
-import { SuperHerosService } from './services/super-heros.service';
 
 @Component({
   selector: 'app-root',

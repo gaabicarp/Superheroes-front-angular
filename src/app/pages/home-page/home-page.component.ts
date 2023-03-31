@@ -1,13 +1,7 @@
 import {
   AfterViewInit,
-  ChangeDetectorRef,
   Component,
-  EventEmitter,
-  Input,
-  OnChanges,
   OnInit,
-  Output,
-  SimpleChanges,
   ViewChild,
 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';

@@ -2,7 +2,6 @@ import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/c
 import { Injectable } from '@angular/core';
 import { finalize, Observable } from 'rxjs';
 import { LoadingService } from '../services/loading.service';
-import { SuperHerosService } from '../services/super-heros.service';
 
 @Injectable({
   providedIn: 'root'

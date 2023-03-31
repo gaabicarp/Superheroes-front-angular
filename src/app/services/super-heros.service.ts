@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Superheroe } from 'src/models/Superheroe.model';
-import { find, map, shareReplay, tap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 
 @Injectable({
