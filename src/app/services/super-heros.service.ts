@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { Superheroe } from 'src/models/Superheroe.model';
-import { tap } from 'rxjs/operators';
+import { find, map, shareReplay, tap } from 'rxjs/operators';
 
 
 @Injectable({
@@ -10,8 +10,9 @@ import { tap } from 'rxjs/operators';
 })
 export class SuperHerosService {
 
-  private heroes!: Superheroe[];
-  private dataUrl = 'assets/data/mock-heroes.json'
+  heroes$ = new BehaviorSubject<Superheroe[]>([]);
+  heroesBackup: Superheroe[] = [];
+  dataUrl = 'http://localhost:3000/data'
 
   constructor(
     private http: HttpClient
@@ -20,53 +21,60 @@ export class SuperHerosService {
   }
 
   loadHeroes(): void {
-    this.http.get<Superheroe[]>(this.dataUrl)
-      .pipe(tap(superHeroes => { 
-        console.log(superHeroes)
-        this.heroes = superHeroes 
-      }))
-      .subscribe();
+    this.http.get<Superheroe[]>(this.dataUrl).subscribe(res => {
+      this.heroes$.next(res) 
+      this.heroesBackup = res;
+    });
   }
 
-  getHeroes(): Observable<Superheroe[]> {
-    return new Observable(observer => {
-      observer.next(this.heroes);
-      observer.complete();
-    })
+  getHeroes(): Observable<any> {
+    return this.heroes$.asObservable();
   }
 
   editHeroe(updatedHero: Superheroe){
-    const index = this.heroes.findIndex(i => i.id === updatedHero.id);
-    if(index !== -1){
-      this.heroes[index] = updatedHero;
-    }
+    this.http.get<Superheroe[]>(this.dataUrl).subscribe(res => {
+      const currentList = res;
+      const index = currentList.findIndex(i => i.id === updatedHero.id);
+      console.log(index)
+      if(index !== -1){
+        currentList[index] = updatedHero;
+      }
+      this.heroes$.next(currentList)
+    });
   }
 
-  getHeroById(id: number){
-    return this.heroes.find(i => i.id === id);
+  getHeroById(id: number): Observable<Superheroe | undefined> {
+    return this.http.get<Superheroe[]>(this.dataUrl).pipe(map(res=> res.find(i=> i.id == id)))
   }
 
   createHeroe(newHero: Superheroe) {
-    newHero.id = new Date().getUTCMilliseconds();
-    this.heroes.push(newHero);
-  }
-
-  getHeroeById(id: number) {
-    return this.heroes.find((h) => h.id === id) || null;
+    this.http.get<Superheroe[]>(this.dataUrl).subscribe(res => {
+      const currentList = res;
+      newHero.id = new Date().getUTCMilliseconds();
+      currentList.push(newHero);
+      this.heroesBackup = currentList;
+      this.heroes$.next(currentList);
+    });
   }
 
   deleteHeroeById(heroe: Superheroe) {
-    let index = this.heroes.indexOf(heroe);
-    if (index > -1) {
-      this.heroes.splice(index, 1);
-    }
+    this.http.get<Superheroe[]>(this.dataUrl).subscribe(res => {
+      let currentList = res;
+      let index = currentList.findIndex(x => x.id == heroe.id);
+      if (index > -1) {
+        currentList.splice(index, 1);
+      }
+      this.heroes$.next(currentList);
+    });
   }
 
   searchByString(name: string) {
-    return this.heroes.filter(
+    let currentList = this.heroesBackup;
+    currentList = currentList.filter(
       (h) =>
         h.name.toLowerCase().includes(name.toLowerCase()) ||
         h.realName.toLowerCase().includes(name.toLowerCase())
     );
+    this.heroes$.next(currentList)
   }
 }

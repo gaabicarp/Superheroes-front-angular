@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { SuperHerosService } from 'src/app/services/super-heros.service';
 import { Superheroe } from 'src/models/Superheroe.model';
 
 @Component({
@@ -8,20 +10,33 @@ import { Superheroe } from 'src/models/Superheroe.model';
   styleUrls: ['./edit-create-heroe.component.css']
 })
 export class EditCreateHeroeComponent implements OnInit {
-  @Input() heroe: Superheroe | null = null;
-  @Output() cancel = new EventEmitter();
-  @Output() create = new EventEmitter();
-  @Output() edit = new EventEmitter();
+  heroe: Superheroe | null = null;
+  heroeId: number | null = null;
 
+  isEdit: boolean = false;
   superHeroForm!: FormGroup;
 
   constructor(
     private fb: FormBuilder,
+    private superHeroService: SuperHerosService,
+    private route: ActivatedRoute,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
     this.createForm();
-    if(this.heroe) this.setValueForm();
+    this.isEdit = this.route.snapshot.routeConfig?.path?.includes('edit') || false;
+    if(this.isEdit) this.getHeroById();
+  }
+
+  getHeroById(){
+    this.route.params.subscribe(param=>{
+      this.heroeId = param["id"]
+    })
+    this.superHeroService.getHeroById(this.heroeId!).subscribe(res=>{
+      this.heroe = res || null;
+      this.setValueForm()
+    })
   }
 
   createForm(): void {
@@ -50,13 +65,15 @@ export class EditCreateHeroeComponent implements OnInit {
   }
 
   onCancel(){
-    this.cancel.emit();
+    this.router.navigateByUrl('');
   }
 
   onSend(){
     this.superHeroForm.controls['id'].value != -1 ?
-      this.edit.emit(this.superHeroForm.value) :
-      this.create.emit(this.superHeroForm.value)
+      this.superHeroService.editHeroe(this.superHeroForm.value)
+      : this.superHeroService.createHeroe(this.superHeroForm.value);
+
+    this.router.navigateByUrl('');
   }
 
 }

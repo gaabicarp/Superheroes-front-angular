@@ -1,5 +1,6 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Superheroe } from 'src/models/Superheroe.model';
+import { LoadingService } from './services/loading.service';
 import { SuperHerosService } from './services/super-heros.service';
 
 @Component({
@@ -9,60 +10,14 @@ import { SuperHerosService } from './services/super-heros.service';
 })
 export class AppComponent implements OnInit {
   
-  heroes: Superheroe[] = [];
-  searchResults: Superheroe[] = []; 
-  showCreateEdit: Boolean = false;
-  selectedHero: Superheroe | null = null;
+  load: boolean = false;
 
   constructor(
-    private superHeroService: SuperHerosService
+    private loadingService: LoadingService
   ) {}
 
   ngOnInit(): void {
-    this.superHeroService.getHeroes().subscribe((res) => {
-      this.heroes = res;
-      this.searchResults = res;
-      console.log(this.heroes)
-      console.log(this.searchResults)
-    });
+    this.loadingService.getLoading().subscribe(res=> this.load = res)
   }
 
-  refreshHeroes(heroes: Superheroe[]) {
-  }
-
-  showEditHeroePage(e: Superheroe) {
-    this.selectedHero = e;
-    this.showCreateEdit = true;
-  }
-
-  showNewHeroePage() {
-    this.selectedHero = null;
-    this.showCreateEdit = true;
-  }
-
-  showHomePage(): void {
-    this.showCreateEdit = false;
-  }
-
-  createHeroe(e: any) {
-    this.superHeroService.createHeroe(e);
-    this.showHomePage();
-  }
-
-  editHeroe(e: any) {
-    this.superHeroService.editHeroe(e);
-    this.showHomePage();
-  }
-
-  deleteHeroe(e: any) {
-    this.superHeroService.deleteHeroeById(e);
-  }
-
-  searchHeroe(e: string) {
-    if(e === ''){
-      this.searchResults = this.heroes;
-    } else {
-      this.searchResults = this.superHeroService.searchByString(e);
-    }
-  }
 }

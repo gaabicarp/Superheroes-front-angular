@@ -1,24 +1,37 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { of } from 'rxjs';
 import { SuperHerosService } from 'src/app/services/super-heros.service';
+import { Superheroe } from 'src/models/Superheroe.model';
 
 import { HomePageComponent } from './home-page.component';
 
 describe('HomePageComponent', () => {
   let component: HomePageComponent;
   let fixture: ComponentFixture<HomePageComponent>;
+  let dialog: MatDialog;
+  let dialogSpy: jasmine.Spy;
 
-  const MockSuperHerosService = jasmine.createSpyObj('SuperHerosService', ['getHeroes', 'getHeroeById', 'getHeroesByString', 'modifyHeroeById', 'deleteHeroeById', 'addHeroe'])
+  
+  const MockSuperHerosService = jasmine.createSpyObj('SuperHerosService', ['getHeroes', 'deleteHeroeById', 'searchByString'])
+  const mockResponseHeroes: Superheroe[] = [{"id": 1, "name": "Ant-Man", "realName": "Hank Pym", "gender": "Male", "weight": 95, "age": 35, "url": "https://www.superherodb.com/pictures2/portraits/10/100/857.jpg"},{ "id": 2, "name": "Aquaman", "realName": "Orin", "gender": "Male", "weight": 95, "age": 35, "url": "https://www.superherodb.com/pictures2/portraits/10/100/634.jpg"}]
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HomePageComponent, MatDialog ],
+      declarations: [ HomePageComponent ],
+      imports: [ HttpClientTestingModule, MatDialogModule, BrowserAnimationsModule, NoopAnimationsModule ],
       providers: [
         {provide: SuperHerosService, useValue: MockSuperHerosService}
       ]
     })
     .compileComponents();
 
-    // MockSuperHerosService.getHeros.and.returnValue({"id": 54, "name": "Superman", "realName": "Clark Kent", "gender": "Male", "url": "https://www.superherodb.com/pictures2/portraits/10/100/791.jpg"})
+    MockSuperHerosService.getHeroes.and.returnValue(of(mockResponseHeroes))
+    const dialog = TestBed.inject(MatDialog)
+    const dialogRef = { afterClosed: ()=> of(true)} as MatDialogRef<any,boolean>
+    dialogSpy = spyOn(dialog, 'open').and.returnValue(dialogRef)
 
     fixture = TestBed.createComponent(HomePageComponent);
     component = fixture.componentInstance;
@@ -32,53 +45,38 @@ describe('HomePageComponent', () => {
   it('#onInit debe llamar al servicio para traer todos los heroes', ()=> {
     component.ngOnInit();
 
-    expect(SuperHerosService.getHeroes)
+    expect(MockSuperHerosService.getHeroes).toHaveBeenCalled();
+    expect(component.heroesList).toEqual(mockResponseHeroes)
+    expect(component.dataSource.data).toEqual(mockResponseHeroes)
 
   })
 
-  it('#searchHeroe debe mostrar en listado el héroe seleccionado', ()=>{
-    const superman = {"id": 54, "name": "Superman", "realName": "Clark Kent", "gender": "Male", "url": "https://www.superherodb.com/pictures2/portraits/10/100/791.jpg"};
-    component.searchFilter = 'Superman';
+  it('#onDelete debe llamar a deletHeroeById y pasarle por parametro un heroe', ()=>{
+    const heroe = {"id": 1, "name": "Ant-Man", "realName": "Hank Pym", "gender": "Male", "weight": 95, "age": 35, "url": "https://www.superherodb.com/pictures2/portraits/10/100/857.jpg"}
+    component.onDelete(heroe);
 
-    component.filterHero();
-
-    expect(SuperHerosService.getHeroesByString).toHaveBeenCalled();
-
-    expect(component.filteredHeroes).toEqual(superman)
+    expect(MockSuperHerosService.deleteHeroeById).toHaveBeenCalled();
+    expect(MockSuperHerosService.deleteHeroeById).toHaveBeenCalledWith(heroe);
   })
 
-  it('#openDialog debe abrir el dialog de alta/modificacion', ()=>{
-    spyOn(component.dialog, ['open'])
+  it('#onSearch debe llamar a searchByString y pasarle por parametro searchFilter', () => {
+    component.searchFilter = 'man';
 
-    expect(dialog.open).toHaveBeenCalled();
+    component.onSearch();
+
+    expect(MockSuperHerosService.searchByString).toHaveBeenCalledWith('man')
   })
 
-  it('#addHeroe debe llamar al servicio para agregar un nuevo heroe', ()=>{
-    const newHeroe = {"id": 55, "name": "Wolverine", "realName": "Logan", "gender": "Male", "url": "https://www.superherodb.com/pictures2/portraits/10/100/161.jpg"}
+  it('#openDialog debe abir el matDialog y al cerrarse debe llamar a onDelete', () => {
+    const heroe = {"id": 1, "name": "Ant-Man", "realName": "Hank Pym", "gender": "Male", "weight": 95, "age": 35, "url": "https://www.superherodb.com/pictures2/portraits/10/100/857.jpg"};
+    
+  
+    spyOn(component, 'onDelete');
 
-    component.addHeroe(newHeroe)
-
-    expect(SuperHerosService.addHeroe).toHaveBeenCalled();
+    component.openDialog(heroe);
+    expect(dialogSpy).toHaveBeenCalled();
+    expect(component.onDelete).toHaveBeenCalledWith(heroe);
   })
-
-  it('#editHeroe debe llamar al servicio para editar un nuevo heroe', ()=>{
-    const heroe = {"id": 54, "name": "Superman", "realName": "Clark Kenttttt", "gender": "Male", "url": "https://www.superherodb.com/pictures2/portraits/10/100/791.jpg"};
-
-    component.editHeroe(heroe)
-
-    expect(SuperHerosService.modifyHeroeById).toHaveBeenCalled();
-  })
-
-  it('#deleteHeroe debe llamar al servicio para eliminar un nuevo heroe', ()=>{
-    const heroe = {"id": 54, "name": "Superman", "realName": "Clark Kenttttt", "gender": "Male", "url": "https://www.superherodb.com/pictures2/portraits/10/100/791.jpg"};
-
-    component.deleteHeroe(heroe.id)
-
-    expect(SuperHerosService.deleteHeroeById).toHaveBeenCalled();
-  })
-
-
-
 
 
 

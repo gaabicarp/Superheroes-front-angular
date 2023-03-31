@@ -12,8 +12,9 @@ import {
 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { DialogComponent } from 'src/app/component/dialog/dialog.component';
+import { SuperHerosService } from 'src/app/services/super-heros.service';
 import { Superheroe } from 'src/models/Superheroe.model';
 
 @Component({
@@ -21,19 +22,15 @@ import { Superheroe } from 'src/models/Superheroe.model';
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.css'],
 })
-export class HomePageComponent implements OnInit, AfterViewInit, OnChanges {
-  @Input() heroesList!: Superheroe[];
-  @Output() editHeroe = new EventEmitter();
-  @Output() newHero = new EventEmitter();
-  @Output() deleteHeroe = new EventEmitter();
-  @Output() searchHeroe = new EventEmitter();
-
+export class HomePageComponent implements OnInit, AfterViewInit {
+  
   dataSource = new MatTableDataSource<Superheroe>([]);
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-
+  @ViewChild(MatTable) table!: MatTable<any>;
+  
+  
+  heroesList!: Superheroe[];
   searchFilter: string = '';
-
-  // heroes: Superheroe[] = data
 
   displayedColumns = [
     'imagen',
@@ -45,18 +42,15 @@ export class HomePageComponent implements OnInit, AfterViewInit, OnChanges {
     'actions',
   ];
 
-  constructor(public dialog: MatDialog) {}
+  constructor(
+    public dialog: MatDialog,
+    private superHeroService: SuperHerosService) {}
 
   ngOnInit(): void {
-    this.dataSource.data = this.heroesList;
-  }
-
-  onEditHero(e: Superheroe){
-    this.editHeroe.emit(e);
-  }
-
-  onNewHero() {
-    this.newHero.emit();
+    this.superHeroService.getHeroes().subscribe((res) => {
+      this.heroesList = res;
+      this.dataSource.data = res;
+    });
   }
 
   openDialog(e: Superheroe) {
@@ -68,7 +62,7 @@ export class HomePageComponent implements OnInit, AfterViewInit, OnChanges {
   }
 
   onDelete(e: Superheroe) {
-    this.deleteHeroe.emit(e);
+    this.superHeroService.deleteHeroeById(e)
   }
 
   ngAfterViewInit() {
@@ -76,10 +70,7 @@ export class HomePageComponent implements OnInit, AfterViewInit, OnChanges {
   }
 
   onSearch() {
-    this.searchHeroe.emit(this.searchFilter);
+    this.superHeroService.searchByString(this.searchFilter)
   }
 
-  ngOnChanges(changes: any): void {
-    this.dataSource.data = changes.heroesList.currentValue;
-  }
 }

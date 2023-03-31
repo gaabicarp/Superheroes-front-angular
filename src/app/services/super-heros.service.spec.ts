@@ -1,79 +1,39 @@
+import { HttpClient } from '@angular/common/http';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
-import { data } from 'src/assets/data/mock-heroes';
+import { BehaviorSubject, of } from 'rxjs';
+import { Superheroe } from 'src/models/Superheroe.model';
 import { SuperHerosService } from './super-heros.service';
 
 describe('SuperHerosService', () => {
   let service: SuperHerosService;
+  let httpMock: HttpTestingController;
+
+  const mockResponseHeroes: Superheroe[] = [{"id": 1, "name": "Ant-Man", "realName": "Hank Pym", "gender": "Male", "weight": 95, "age": 35, "url": "https://www.superherodb.com/pictures2/portraits/10/100/857.jpg"},{ "id": 2, "name": "Aquaman", "realName": "Orin", "gender": "Male", "weight": 95, "age": 35, "url": "https://www.superherodb.com/pictures2/portraits/10/100/634.jpg"}]
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+        imports:[HttpClientTestingModule],
+        providers: [ SuperHerosService ]
+      });
     service = TestBed.inject(SuperHerosService);
+    httpMock = TestBed.inject(HttpTestingController)
   });
 
-  it('should be created', () => {
+  afterEach(() => {
+    httpMock.verify();
+  });
+
+  it('should be created', (done) => {
     expect(service).toBeTruthy();
+    const request = httpMock.expectOne('http://localhost:3000/data');
+    request.flush({});
+  
+    service.heroes$.subscribe(() => {
+      expect(service.heroesBackup).toBeDefined();
+      done();
+    });
   });
 
-  it('#getHeroes debe traer todos los héroes', () => {
-    let rta = service.getHeroes();
-    expect(rta).toEqual(data);
-  });
 
-  it('#getHeroeById debe traer el héroe correspondiende al id dado', () => {
-    const heroe = {
-      id: 2,
-      name: 'Aquaman',
-      realName: 'Orin',
-      gender: 'Male',
-      weight: 95,
-      age: 35,
-      url: 'https://www.superherodb.com/pictures2/portraits/10/100/634.jpg',
-    };
-
-    const result = service.getHeroeById(2);
-
-    expect(result).toEqual(heroe);
-  });
-
-  it('#getHeroesByString debe traer todos los héroes que contienen el parametro dado', () => {
-    const heroe = {
-      id: 2,
-      name: 'Aquaman',
-      realName: 'Orin',
-      gender: 'Male',
-      weight: 24,
-      age: 42,
-      url: 'https://www.superherodb.com/pictures2/portraits/10/100/634.jpg',
-    };
-
-    const result = service.getHeroesByString('Aquaman');
-
-    expect(result).toEqual(heroe);
-  });
-
-  it('#modifyHeroeById debe modificar el héroe con los nuevos valores dados', () => {
-    const editedHeroe = {
-      id: 2,
-      name: 'Aquaman',
-      realName: 'Pedro Martinez',
-      gender: 'Male',
-      weight: 24,
-      age: 42,
-      url: 'https://www.superherodb.com/pictures2/portraits/10/100/634.jpg',
-    };
-
-    service.modifyHeroeById(editedHeroe);
-
-    const result = service.getHeroeById(2);
-
-    expect(result?.realName).toEqual('Pedro Martinez');
-  });
-
-  it('#deleteHeroeById debe eliminar el heroe correspondiente al id dado', () => {
-    service.deleteHeroeById(3);
-
-    const result = service.getHeroeById(3);
-
-    expect(result).toBeNull();
-  });
-});
+})

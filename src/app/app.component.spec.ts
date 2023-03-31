@@ -1,8 +1,17 @@
-import { TestBed } from '@angular/core/testing';
+import { Component } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { of } from 'rxjs';
 import { AppComponent } from './app.component';
+import { LoadingService } from './services/loading.service';
 
 describe('AppComponent', () => {
+  let component: AppComponent;
+  let fixture: ComponentFixture<AppComponent>;
+
+  const mockLoadService = jasmine.createSpyObj('LoadService', ['getLoading']);
+
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
@@ -11,25 +20,28 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent
       ],
+      providers: [
+        { provide: LoadingService, useValue: mockLoadService}
+      ]
     }).compileComponents();
+
+    mockLoadService.getLoading.and.returnValue(of(false))
+  });
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(AppComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
   });
 
   it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
+    expect(component).toBeTruthy();
   });
 
-  it(`should have as title 'challenge-W2M'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('challenge-W2M');
-  });
+  it('#ngOnInit debería actualizar la variable load correctamente', ()=>{
+    component.ngOnInit();
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('challenge-W2M app is running!');
-  });
+    expect(mockLoadService.getLoading).toHaveBeenCalled();
+  })
+
 });

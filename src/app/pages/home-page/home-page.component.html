@@ -17,7 +17,7 @@
       <mat-icon>close</mat-icon>
     </button>
   </mat-form-field>
-  <button mat-mini-fab color="primary" (click)="onNewHero()">
+  <button mat-mini-fab color="primary" routerLink="/new">
     <mat-icon>add</mat-icon>
   </button>
 </div>
@@ -71,7 +71,7 @@
       <td mat-cell *matCellDef="let element">
         <div class="flex-row">
           <div>
-            <button mat-mini-fab color="accent" (click)="onEditHero(element)">
+            <button mat-mini-fab color="accent" [routerLink]="[ element.id, 'edit']">
               <mat-icon>edit</mat-icon>
             </button>
           </div>
@@ -88,9 +88,9 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
 
-  <p *ngIf="dataSource.data.length === 0">
+  <!-- <p *ngIf="dataSource.data?.length === 0">
     We did not find results for your search
-  </p>
+  </p> -->
 
   <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons>
   </mat-paginator>

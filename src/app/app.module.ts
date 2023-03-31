@@ -14,11 +14,14 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatDialogModule } from '@angular/material/dialog';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 import { EditCreateHeroeComponent } from './pages/edit-create-heroe/edit-create-heroe.component';
 import { DialogComponent } from './component/dialog/dialog.component';
 import { UpperCaseDirective } from './directives/upper-case.directive';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AppRoutingModule } from './app-routing.module';
+import { LoadInterceptorService } from './interceptor/load-interceptor.service';
 
 @NgModule({
   declarations: [AppComponent, HomePageComponent, EditCreateHeroeComponent, DialogComponent, UpperCaseDirective],
@@ -36,8 +39,10 @@ import { HttpClientModule } from '@angular/common/http';
     MatButtonModule,
     MatRadioModule,
     MatDialogModule,
+    AppRoutingModule,
+    MatProgressSpinnerModule
   ],
-  providers: [],
+  providers: [ { provide: HTTP_INTERCEPTORS, useClass: LoadInterceptorService, multi: true } ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

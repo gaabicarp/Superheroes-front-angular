@@ -1,21 +1,11 @@
-<div class="title-container">
-  <h1>Super Heroes Wiki</h1>
-  <p class="subtitle-text">Search the best superheroes of all the universes</p>
-</div>
-
-<app-home-page
-  *ngIf="!showCreateEdit"
-  [heroesList]="searchResults"
-  (editHeroe)="showEditHeroePage($event)"
-  (newHero)="showNewHeroePage()"
-  (deleteHeroe)="deleteHeroe($event)"
-  (searchHeroe)="searchHeroe($event)"
-></app-home-page>
-
-<app-edit-create-heroe
-  *ngIf="showCreateEdit"
-  [heroe]="selectedHero"
-  (create)="createHeroe($event)"
-  (edit)="editHeroe($event)"
-  (cancel)="showHomePage()"
-></app-edit-create-heroe>
+<mat-card class="container">
+  <div class="title-container">
+    <h1>Super Heroes Wiki</h1>
+    <p class="subtitle-text">Search the best superheroes of all the universes</p>
+  </div>
+  
+  <router-outlet *ngIf="!load"></router-outlet>
+  <div class="loader-container">
+    <mat-spinner *ngIf="load"></mat-spinner>
+  </div>
+</mat-card>
