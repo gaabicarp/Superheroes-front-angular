@@ -4,10 +4,14 @@ WORKDIR /app
 COPY package.json /app
 RUN npm install
 COPY . /app
-EXPOSE 3000
-CMD ["npm", "run", "mockupserver"]
 RUN npm run build --prod
 
-FROM  nginx:1.17.1-alpine
+FROM  nginx:1.23.4-alpine
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY --from=build-step app/dist/challenge-w2-m /usr/share/nginx/html
+COPY --from=build-step app/src/mockserver/db.json /data/db.json
+RUN apk add --update nodejs npm
+RUN npm i -g json-server
+EXPOSE 3000
+
+CMD json-server --watch /data/db.json --port 3000 --host 0.0.0.0 & nginx -g 'daemon off;'

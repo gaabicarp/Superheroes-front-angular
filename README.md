@@ -13,7 +13,7 @@ git clone https://github.com/gaabicarp/Challenge-W2M
 # Luego entrar en la carpeta del proyecto y ejecutar
 docker build -t challenge-w2 .
 
-docker run -d -it -p 80:80 challenge-w2
+docker run -d -it -p 80:80 -p 3000:3000 challenge-w2
 
 #El proyecto estara disponible en el puerto 80 (localhost:80)
 ```
