@@ -21,6 +21,7 @@ describe('SuperHerosService', () => {
   });
 
   afterEach(() => {
+    
     httpMock.verify();
   });
 
@@ -34,6 +35,20 @@ describe('SuperHerosService', () => {
       done();
     });
   });
+
+
+  it('searchByString debe filtrar por string', () =>{
+    const request = httpMock.expectOne('http://localhost:3000/data');
+    request.flush({});
+    const heroes$ = new BehaviorSubject<Superheroe[]>(mockResponseHeroes);
+    service.heroesBackup = mockResponseHeroes;
+    service.heroes$ = heroes$;
+
+    service.searchByString('ant')
+    const result = service.heroes$.getValue();
+
+    expect(result).toEqual([{"id": 1, "name": "Ant-Man", "realName": "Hank Pym", "gender": "Male", "weight": 95, "age": 35, "url": "https://www.superherodb.com/pictures2/portraits/10/100/857.jpg"}])
+  })
 
 
 })
