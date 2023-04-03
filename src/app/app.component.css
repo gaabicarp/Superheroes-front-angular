@@ -1,29 +1,36 @@
-.title-container{
-    width: 100%;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
+.title-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
-h1{
-    margin-bottom: 0px;
-    font-family: 'Rubik Glitch', cursive;
-    font-size: 48px;
+h1 {
+  margin-bottom: 0px;
+  font-family: "Rubik Glitch", cursive;
+  font-size: 48px;
 }
 
-.subtitle-text{
-    margin-top: 2px;
-    font-size: 16px;
-    color: #666;
+.subtitle-text {
+  margin-top: 2px;
+  font-size: 16px;
+  color: #666;
 }
 
-.loader-container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.container{
-    margin: 0px 300px;
-    background-color: white;
+.container {
+  margin: 0px 25%;
+  min-width: 634.2px;
+  background-color: white;
+}
+
+@media only screen and (max-width: 966px) {
+  .container {
+    margin: auto;
+  }
 }
